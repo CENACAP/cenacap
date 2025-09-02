@@ -68,6 +68,7 @@ body {
     background-image: 
         url('../img/5.jpg'), 
         url('../img/logo_union.jpg'); 
+
     background-size: cover;
     background-position: center;
     animation: image-change 15s infinite;
@@ -144,4 +145,26 @@ footer {
     padding: 1em 0;
     background-color: var(--color-text-dark);
     color: var(--color-text-light);
+}
+.course-list-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre los botones */
+}
+
+.course-button {
+    background-color: var(--color-primary-blue);
+    color: var(--color-text-light);
+    text-align: center;
+    padding: 1.2em 1em;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.course-button:hover {
+    transform: translateY(-5px);
+    background-color: #003366;
 }
