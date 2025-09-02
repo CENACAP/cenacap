@@ -14,6 +14,7 @@ body {
     background-color: var(--color-text-light);
     color: var(--color-text-dark);
     line-height: 1.6;
+    scroll-behavior: smooth;
 }
 
 .header {
@@ -28,6 +29,55 @@ body {
     width: 250px;
     height: auto;
     margin-bottom: 1em;
+}
+
+.main-nav {
+    background-color: var(--color-primary-blue);
+    color: var(--color-text-light);
+    border-top: 2px solid var(--color-secondary-yellow);
+    padding: 0.5em 0;
+}
+
+.main-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.main-nav li a {
+    display: block;
+    color: var(--color-text-light);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.main-nav li a:hover {
+    background-color: var(--color-secondary-yellow);
+    color: var(--color-text-dark);
+}
+
+.image-carousel {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    background-image: 
+        url('../img/5.jpg'), 
+        url('../img/logo_union.jpg'); 
+    background-size: cover;
+    background-position: center;
+    animation: image-change 15s infinite;
+}
+
+@keyframes image-change {
+    0% { background-image: url('../img/5.jpg'); }
+    33% { background-image: url('../img/logo_union.jpg'); }
+    66% { background-image: url('../img/7.png'); }
+    100% { background-image: url('../img/5.jpg'); }
 }
 
 main {
