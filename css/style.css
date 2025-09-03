@@ -9,8 +9,8 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
+    margin: 0; /* Aseguramos que no haya margen en la parte superior del body */
+    padding: 0; /* Aseguramos que no haya padding en la parte superior del body */
     background-color: var(--color-text-light);
     color: var(--color-text-dark);
     line-height: 1.6;
@@ -44,13 +44,15 @@ body {
     align-items: center;
     max-width: 1200px;
     margin: auto;
-    padding: 10px 20px;
+    padding: 0 20px; /* Ajustado el padding para el espacio del logo */
+    background-color: var(--color-primary-blue); /* Fondo azul para la barra de navegación que incluye el logo */
 }
 
 .logo {
     width: 150px;
     height: auto;
     transition: width 0.3s ease-in-out;
+    padding: 5px 0; /* Pequeño padding para separar el logo del borde */
 }
 
 .main-nav.scrolled .logo {
@@ -85,6 +87,7 @@ body {
     height: 400px;
     overflow: hidden;
     background-color: #000;
+    margin-top: 60px; /* Compensa la altura de la barra de navegación */
 }
 
 .carousel-video {
@@ -123,10 +126,8 @@ body {
 }
 
 .carousel-overlay h1 {
-    font-size: 3.5em;
-    margin-bottom: 0.2em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    color: var(--color-secondary-yellow);
+    /* REMOVIDO: font-size y color para eliminar las letras amarillas del video */
+    display: none; /* Asegura que el h1 no se muestre */
 }
 
 .carousel-overlay p {
@@ -212,10 +213,10 @@ footer {
 }
 
 /* --- Media Queries para Teléfonos Móviles --- */
-/* Esta sección debe ir siempre al final del archivo */
 @media (max-width: 768px) {
     .video-carousel {
         height: 250px;
+        margin-top: 100px; /* Ajusta este valor si la barra de navegación móvil es más alta */
     }
     .nav-content {
         flex-direction: column;
@@ -232,6 +233,6 @@ footer {
         padding: 8px 10px;
     }
     .carousel-overlay h1 {
-        font-size: 2em;
+        font-size: 1.5em; /* Ajuste para móviles si el h1 fuera visible */
     }
 }
