@@ -64,7 +64,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -219,26 +219,38 @@ footer {
         height: 250px;
         margin-top: 100px;
     }
+    
     .nav-content {
-        flex-direction: column;
+        flex-direction: row; /* Hacemos que los elementos se mantengan en una fila */
+        justify-content: space-around; /* Distribuimos los elementos horizontalmente */
+        align-items: center;
         padding: 10px;
     }
+    
     .logo {
         width: 100px;
-        margin-bottom: 10px;
+        margin: 0; /* Eliminamos el margen inferior */
     }
+    
     .main-nav ul {
-        flex-direction: column;
+        flex-direction: row; /* Hacemos que la lista de enlaces se muestre en una fila */
+        justify-content: center;
+        flex-wrap: wrap;
     }
+    
     .main-nav li a {
         padding: 8px 10px;
+        font-size: 0.8em; /* Hacemos la fuente más pequeña para que quepa */
     }
+
     .carousel-overlay p {
         font-size: 1.2em;
     }
+    
     main {
         padding: 1em;
     }
+    
     section {
         padding: 1.5em;
     }
