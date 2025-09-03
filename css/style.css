@@ -17,12 +17,12 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Oculta el encabezado anterior si existe */
+/* Estilos para el encabezado y el logo */
 .header {
-    display: none;
+    display: none; /* Ocultamos el logo del encabezado para el efecto de barra transparente */
 }
 
-/* --- Estilos de la barra de navegación --- */
+/* Estilos de la barra de navegación */
 .main-nav {
     position: fixed;
     top: 0;
@@ -38,30 +38,12 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.nav-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: auto;
-    padding: 10px 20px;
-}
-
-.logo {
-    width: 150px;
-    height: auto;
-    transition: width 0.3s ease-in-out;
-}
-
-.main-nav.scrolled .logo {
-    width: 120px;
-}
-
 .main-nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
+    justify-content: center;
 }
 
 .main-nav li a {
@@ -82,7 +64,7 @@ body {
 .video-carousel {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 400px;
     overflow: hidden;
     background-color: #000;
 }
@@ -183,7 +165,7 @@ h2 {
 .course-list-buttons {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 15px; /* Espacio entre los botones */
 }
 
 .course-button {
@@ -209,4 +191,11 @@ footer {
     padding: 1em 0;
     background-color: var(--color-text-dark);
     color: var(--color-text-light);
+}
+
+/* --- Media Queries para Teléfonos Móviles --- */
+@media (max-width: 768px) {
+    .video-carousel {
+        height: 250px;
+    }
 }
