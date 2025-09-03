@@ -17,9 +17,9 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Estilos para el encabezado y el logo */
+/* Ocultamos el encabezado anterior */
 .header {
-    display: none; /* Ocultamos el logo del encabezado para el efecto de barra transparente */
+    display: none;
 }
 
 /* Estilos de la barra de navegación */
@@ -38,12 +38,30 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px 20px;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    transition: width 0.3s ease-in-out;
+}
+
+.main-nav.scrolled .logo {
+    width: 120px;
+}
+
 .main-nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
 }
 
 .main-nav li a {
@@ -194,8 +212,26 @@ footer {
 }
 
 /* --- Media Queries para Teléfonos Móviles --- */
+/* Esta sección debe ir siempre al final del archivo */
 @media (max-width: 768px) {
     .video-carousel {
         height: 250px;
+    }
+    .nav-content {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .logo {
+        width: 100px;
+        margin-bottom: 10px;
+    }
+    .main-nav ul {
+        flex-direction: column;
+    }
+    .main-nav li a {
+        padding: 8px 10px;
+    }
+    .carousel-overlay h1 {
+        font-size: 2em;
     }
 }
