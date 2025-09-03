@@ -1,45 +1,19 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const videos = document.querySelectorAll('.carousel-video');
-    const mainNav = document.querySelector('.main-nav');
-    let currentVideoIndex = 0;
+// Obtiene el botón de hamburguesa y la lista de enlaces
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.querySelector('.nav-links');
 
-    function showVideo(index) {
-        videos.forEach((video, i) => {
-            if (i === index) {
-                video.classList.add('active');
-                video.currentTime = 0;
-                video.play();
-            } else {
-                video.classList.remove('active');
-                video.pause();
-            }
-        });
+// Agrega un "escuchador de eventos" para detectar clics en el botón
+menuToggle.addEventListener('click', () => {
+    // Alterna la clase 'active' en la lista de enlaces
+    navLinks.classList.toggle('active');
+});
+
+// Función para la barra de navegación que cambia de color al hacer scroll
+window.addEventListener('scroll', () => {
+    const nav = document.querySelector('.main-nav');
+    if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
     }
-
-    function nextVideo() {
-        currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-        showVideo(currentVideoIndex);
-    }
-
-    // Muestra el primer video al cargar
-    if (videos.length > 0) {
-        showVideo(currentVideoIndex);
-    }
-
-    // Cambia al siguiente video después de que el actual termine
-    videos.forEach(video => {
-        video.addEventListener('ended', nextVideo);
-    });
-
-    // Fallback para cambiar videos si no se detecta 'ended'
-    setInterval(nextVideo, 10000); // Cambia cada 10 segundos
-
-    // Lógica para que la barra de navegación cambie de color al hacer scroll
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            mainNav.classList.add('scrolled');
-        } else {
-            mainNav.classList.remove('scrolled');
-        }
-    });
 });
