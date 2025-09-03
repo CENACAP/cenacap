@@ -1,73 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="5.png" type="image/png">
-    <title>CENACAP | Contacto</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - CENACAP</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
-    <nav class="main-nav">
-        <div class="nav-content">
-            <img src="img/5.png" alt="Logo de CENACAP" class="logo">
-            <button class="hamburger-menu" id="menu-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="logo_union.jpg" alt="Logo CENACAP">
+        </a>
+        <nav class="nav">
+            <button class="nav-toggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links">
                 <li><a href="index.html">Inicio</a></li>
-                <li><a href="index.html#about-us">Acerca de nosotros</a></li>
-                <li><a href="index.html#organizations">Organizaciones</a></li>
-                <li><a href="index.html#courses">Cursos</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+                <li><a href="organizaciones.html">Organizaciones</a></li>
+                <li><a href="acerca-de-nosotros.html">Acerca de nosotros</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Contáctanos</h1>
+        </section>
+
+        <section class="contact-form">
+            <form action="submit_form.php" method="POST">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit" class="btn">Enviar Mensaje</button>
+            </form>
+        </section>
+
+        <section class="contact-info">
+            <h2>Información de Contacto</h2>
+            <p><strong>Dirección:</strong> Calle Falsa 123, Cochabamba, Bolivia</p>
+            <p><strong>Teléfono:</strong> +591 12345678</p>
+            <p><strong>Email:</strong> info@cenacap.edu.bo</p>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3799.3038670889983!2d-66.1568285!3d-17.3934382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e176b6e493397f%3A0xcf824e4d50931102!2sCochabamba%2C%20Bolivia!5e0!3m2!1ses!2sbo!4v1693796515123!5m2!1ses!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Dirección: Calle Falsa 123, Cochabamba, Bolivia</p>
+                <p>Teléfono: +591 12345678</p>
+                <p>Email: info@cenacap.edu.bo</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
         </div>
-    </nav>
+        <div class="copyright">
+            <p>&copy; 2025 CENACAP. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
-    <main>
-        <section id="contact-info">
-            <h2>Contacto</h2>
-            <div class="contact-details">
-                <p>Para más información, contáctanos a través de los siguientes medios:</p>
-                <div class="contact-item">
-                    <h3>Dirección:</h3>
-                    <p>Calle Lanza Nro. 345, Edificio Lanza, Piso 1, Oficina 102</p>
-                    <p>Cochabamba - Bolivia</p>
-                </div>
-                <div class="contact-item">
-                    <h3>Teléfonos:</h3>
-                    <p>+591 4 4567890</p>
-                    <p>+591 71234567</p>
-                </div>
-                <div class="contact-item">
-                    <h3>Correo electrónico:</h3>
-                    <p><a href="mailto:info@cenacap.org">info@cenacap.org</a></p>
-                </div>
-                <div class="contact-item">
-                    <h3>Redes Sociales:</h3>
-                    <div class="social-links">
-                        <a href="https://facebook.com/cenacap" target="_blank" class="social-icon">
-                             
-                        </a>
-                        <a href="https://instagram.com/cenacap" target="_blank" class="social-icon">
-                            
-                        </a>
-                        <a href="https://twitter.com/cenacap" target="_blank" class="social-icon">
-                            
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 CENACAP - Cochabamba, Bolivia. Todos los derechos reservados.</p>
-    </footer>
-
-    <script src="js/main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

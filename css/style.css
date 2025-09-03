@@ -1,372 +1,428 @@
+/* Paleta de Colores:
+Azul: #004D80
+Amarillo Dorado: #FFD700
+Blanco: #FFFFFF
+Gris Claro: #F4F4F4
+Gris Oscuro: #333333 */
+
 :root {
-    --color-primary-blue: #004d80;
-    --color-secondary-yellow: #FFD700;
-    --color-text-light: #f4f4f4;
-    --color-text-dark: #333;
-    --color-background: #fff;
-    --color-shadow: rgba(0, 0, 0, 0.1);
+    --primary-color: #004D80;
+    --accent-color: #FFD700;
+    --light-color: #FFFFFF;
+    --background-color: #F4F4F4;
+    --text-color: #333333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--color-text-light);
-    color: var(--color-text-dark);
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--light-color);
     line-height: 1.6;
-    scroll-behavior: smooth;
 }
 
-/* Ocultamos el encabezado anterior */
+/* ------------------ Header y Navegación ------------------ */
+
 .header {
-    display: none;
-}
-
-/* --- Barra de Navegación --- */
-.main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: transparent;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.main-nav.scrolled {
-    background-color: var(--color-primary-blue);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.nav-content {
+    background-color: var(--primary-color);
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: auto;
-    padding: 0 20px;
-    background-color: var(--color-primary-blue);
-    min-height: 60px; /* Asegura una altura mínima para la barra */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
 }
 
-.logo {
-    width: 100px; /* Tamaño del logo para escritorio */
-    height: auto;
-    transition: width 0.3s ease-in-out;
-    padding: 5px 0;
+.header.scrolled {
+    padding: 0.5rem 2rem;
+    background-color: rgba(0, 77, 128, 0.95);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.main-nav.scrolled .logo {
-    width: 80px; /* Logo un poco más pequeño al hacer scroll */
+.header .logo img {
+    height: 50px;
 }
 
-/* Estilos de la lista de enlaces (por defecto en PC) */
 .nav-links {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex; /* Se muestra en fila por defecto */
+    list-style: none;
+    display: flex;
 }
 
-.nav-links li a {
-    display: block;
-    color: var(--color-text-light);
-    text-align: center;
-    padding: 14px 16px;
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: var(--light-color);
     text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding: 10px 0;
+    position: relative;
 }
 
-.nav-links li a:hover {
-    background-color: var(--color-secondary-yellow);
-    color: var(--color-text-dark);
+.nav-links a:hover {
+    color: var(--accent-color);
 }
 
-/* --- Estilos para el botón de hamburguesa (oculto en PC) --- */
-.hamburger-menu {
-    display: none; /* Oculto por defecto en PC */
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    background: transparent;
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-color);
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1);
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--light-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Menú de hamburguesa para móviles */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: var(--primary-color);
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .nav-links li {
+        margin: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 15px;
+    }
+}
+
+/* ------------------ Secciones de la Página ------------------ */
+
+main {
+    padding-top: 80px; /* Espacio para el header fijo */
+}
+
+section {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+h1, h2, h3, h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     border: none;
     cursor: pointer;
-    padding: 0;
-    z-index: 1001; /* Asegura que esté por encima de otros elementos */
 }
 
-.hamburger-menu .bar {
-    width: 100%;
-    height: 3px;
-    background-color: var(--color-text-light);
-    border-radius: 10px;
-    transition: all 0.3s linear;
-    transform-origin: 1px;
+.btn:hover {
+    background-color: #FFC107;
+    transform: translateY(-2px);
 }
 
-/* --- Carrusel de Videos --- */
+.page-header {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    padding: 6rem 2rem 4rem;
+}
+
+.page-header h1 {
+    color: var(--light-color);
+}
+
+.page-header p {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ------------------ Carrusel de Video ------------------ */
+
 .video-carousel {
     position: relative;
+    height: 80vh;
     width: 100%;
-    height: 400px;
     overflow: hidden;
-    background-color: #000;
-    margin-top: 60px; /* Compensa la altura de la barra de navegación */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--light-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-.carousel-video {
+.video-carousel video {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     min-width: 100%;
     min-height: 100%;
     width: auto;
     height: auto;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
+    z-index: -1;
+    transform: translate(-50%, -50%);
 }
 
-.carousel-video.active {
+.video-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.video-overlay h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--light-color);
+}
+
+.video-overlay p {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    margin-top: 1rem;
+}
+
+/* ------------------ Cards de Cursos y Organizaciones ------------------ */
+
+.course-cards-container,
+.all-courses-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.course-card, .module-card {
+    background-color: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card:hover, .module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.course-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.course-card h3 {
+    margin-top: 0;
+}
+
+.course-card p {
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+
+.course-card .btn {
+    align-self: flex-start;
+}
+
+.all-courses-btn {
+    margin-top: 2rem;
+}
+
+.organization-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.organization-logos img {
+    max-width: 150px;
+    height: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.organization-logos img:hover {
+    filter: grayscale(0%);
     opacity: 1;
 }
 
-.carousel-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: var(--color-text-light);
-    text-align: center;
-    padding: 2em;
-    z-index: 1;
-}
+/* ------------------ Sección de Detalle de Cursos ------------------ */
 
-.carousel-overlay h1 {
-    font-size: 3em; /* Título del carrusel */
-    margin-bottom: 0.2em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    color: var(--color-text-light); /* Color blanco o light para el título */
-}
-
-.carousel-overlay p {
-    font-size: 1.5em;
-    max-width: 700px;
-    line-height: 1.4;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
-
-/* --- Secciones Principales --- */
-main {
-    padding: 2em;
+.course-detail {
+    padding-top: 5rem;
     max-width: 900px;
-    margin: auto;
+    margin: 0 auto;
+    text-align: left;
 }
 
-section {
-    background-color: var(--color-background);
-    padding: 2em;
-    margin-bottom: 2em;
+.course-header {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.course-header h1 {
+    font-size: 2.5rem;
+}
+
+.course-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    background-color: var(--background-color);
+    padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 8px var(--color-shadow);
+    margin-bottom: 2rem;
 }
 
-h2 {
-    color: var(--color-primary-blue);
-    border-bottom: 2px solid var(--color-secondary-yellow);
-    padding-bottom: 0.5em;
-    margin-bottom: 1em;
-}
-
-/* --- Estilos de "Nuestras Organizaciones" --- */
-.organizations {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.organization-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.info-box {
     text-align: center;
-    width: 100%;
 }
 
-.organization-card img {
-    max-width: 150px;
-    height: auto;
-    margin-bottom: 1em;
+.info-box h4 {
+    margin: 0;
+    color: var(--primary-color);
 }
 
-/* --- Estilos de los botones de "Cursos" --- */
-.course-list-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.info-box p {
+    margin: 0;
 }
 
-.course-button {
-    background-color: var(--color-primary-blue);
-    color: var(--color-text-light);
+.course-section {
+    margin-bottom: 3rem;
+}
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.module-card h4 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.content-list {
+    margin-top: 2rem;
+}
+
+.content-list h4 {
+    color: var(--accent-color);
+    border-left: 3px solid var(--accent-color);
+    padding-left: 10px;
+    margin-bottom: 1rem;
+}
+
+.content-list ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.content-list li {
+    background-color: var(--background-color);
+    margin-bottom: 0.5rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+/* ------------------ Footer ------------------ */
+
+.footer {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    padding: 2rem;
     text-align: center;
-    padding: 1.2em 1em;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.course-button:hover {
-    transform: translateY(-5px);
-    background-color: #003366;
-}
-
-/* --- Pie de Página --- */
-footer {
-    text-align: center;
-    padding: 1em 0;
-    background-color: var(--color-text-dark);
-    color: var(--color-text-light);
-}
-
-/* --- Estilos para la página de Contacto --- */
-#contact-info {
-    text-align: center;
-    padding-top: 80px; /* Para que no quede oculto bajo el nav fijo */
-}
-
-.contact-details {
+.footer-container {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
-.contact-item {
-    background-color: var(--color-background); /* Cambiado a var(--color-background) para consistencia */
-    padding: 1.5em;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--color-shadow);
-    text-align: left; /* Alinea el texto a la izquierda dentro del item */
+.footer-section {
+    text-align: left;
 }
 
-.contact-item h3 {
-    color: var(--color-primary-blue);
-    margin-top: 0;
-    border-bottom: 2px solid var(--color-secondary-yellow);
-    padding-bottom: 0.5em;
+.footer-section h4 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
 }
 
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 10px;
+.footer-section p {
+    margin: 0.5rem 0;
 }
 
-.social-icon {
-    width: 40px;
-    height: 40px;
-    display: block;
-    background-size: cover;
-    border-radius: 50%;
-    transition: transform 0.3s ease;
+.social-icons a {
+    color: var(--light-color);
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.social-icon:hover {
+.social-icons a:hover {
+    color: var(--accent-color);
     transform: scale(1.1);
 }
 
-.social-icon img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    border-radius: 50%;
-}
-
-/* --- Media Queries para Pantallas Pequeñas (Móviles) --- */
-@media (max-width: 768px) {
-    .video-carousel {
-        height: 250px;
-        margin-top: 60px; /* Ajusta este valor si la barra de navegación móvil es más alta */
-    }
-    
-    .nav-content {
-        padding: 5px 15px; /* Ajusta el padding para móviles */
-    }
-
-    .logo {
-        width: 80px; /* Logo más pequeño en móvil */
-    }
-
-    /* Ocultar la navegación normal y mostrar el botón de hamburguesa */
-    .nav-links {
-        position: fixed;
-        right: 0;
-        top: 60px; /* Altura de la barra de navegación */
-        height: calc(100% - 60px); /* Ocupa el resto de la altura */
-        width: 70%; /* Ocupa el 70% del ancho de la pantalla */
-        background-color: var(--color-primary-blue);
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start; /* Alinea los elementos arriba en el menú desplegado */
-        transform: translateX(100%); /* Oculta el menú a la derecha */
-        transition: transform 0.3s ease-in-out;
-        padding-top: 20px;
-    }
-
-    .nav-links.active {
-        transform: translateX(0%); /* Muestra el menú al activarse */
-        box-shadow: -5px 0 10px rgba(0,0,0,0.3);
-    }
-
-    .nav-links li {
-        width: 100%; /* Ocupa todo el ancho en el menú desplegado */
-        text-align: center;
-    }
-
-    .nav-links li a {
-        padding: 15px 10px;
-        font-size: 1.1em; /* Texto más grande en el menú desplegado */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .nav-links li:last-child a {
-        border-bottom: none;
-    }
-    
-    .hamburger-menu {
-        display: flex; /* Muestra el botón de hamburguesa en móvil */
-    }
-
-    .carousel-overlay h1 {
-        font-size: 2em;
-    }
-    .carousel-overlay p {
-        font-size: 1em;
-    }
-    
-    main {
-        padding: 1em;
-    }
-    
-    section {
-        padding: 1.5em;
-    }
-
-    /* Ajustes para la página de Contacto en móvil */
-    #contact-info {
-        padding-top: 80px; /* Más espacio para que no choque con la barra */
-    }
-    .contact-item {
-        text-align: center; /* Centra el texto en los ítems de contacto en móvil */
-    }
+.copyright {
+    text-align: center;
 }

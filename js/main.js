@@ -1,22 +1,19 @@
-// Funcionalidad para el menú de hamburguesa
-const menuToggle = document.getElementById('menu-toggle');
-const navLinks = document.querySelector('.nav-links');
+document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const header = document.querySelector('.header');
 
-if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
+    // Toggle para el menú de hamburguesa
+    navToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-        menuToggle.classList.toggle('active');
     });
-}
 
-// Funcionalidad para la barra de navegación que cambia de color al hacer scroll
-window.addEventListener('scroll', () => {
-    const nav = document.querySelector('.main-nav');
-    if (nav) {
+    // Efecto de scroll en el header
+    window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            nav.classList.add('scrolled');
+            header.classList.add('scrolled');
         } else {
-            nav.classList.remove('scrolled');
+            header.classList.remove('scrolled');
         }
-    }
+    });
 });
