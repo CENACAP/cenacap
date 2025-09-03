@@ -96,7 +96,7 @@ body {
 }
 
 .nav-toggle {
-    display: none; /* Oculto por defecto en escritorio */
+    display: none;
     background: none;
     border: none;
     color: var(--light-color);
@@ -104,26 +104,25 @@ body {
     cursor: pointer;
 }
 
-/* --------------- Media Queries para Móviles (punto clave) --------------- */
-
+/* Media Queries para Móviles */
 @media (max-width: 768px) {
     .nav-toggle {
-        display: block; /* Muestro el botón de hamburguesa */
+        display: block;
     }
 
     .nav-links {
-        display: none; /* Oculto el menú por defecto */
+        display: none;
         flex-direction: column;
         width: 100%;
         text-align: center;
         background-color: var(--primary-color);
         position: absolute;
-        top: 100%; /* Lo posiciono debajo del header */
+        top: 100%;
         left: 0;
     }
 
     .nav-links.active {
-        display: flex; /* Muestro el menú cuando la clase 'active' está presente */
+        display: flex;
     }
     
     .nav-links li {
@@ -137,54 +136,7 @@ body {
     }
 }
 
-/* ------------------ Sección de Carrusel de Video ------------------ */
-
-.video-carousel {
-    position: relative;
-    height: 80vh;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--light-color);
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-.video-carousel video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -1;
-    transform: translate(-50%, -50%);
-}
-
-.video-overlay {
-    background-color: rgba(0, 0, 0, 0.4);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-}
-
-.video-overlay h1 {
-    font-size: clamp(2rem, 5vw, 4rem);
-    color: var(--light-color);
-}
-
-.video-overlay p {
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    margin-top: 1rem;
-}
-
-/* ------------------ Secciones y Tarjetas ------------------ */
+/* ------------------ Secciones de la Página ------------------ */
 
 main {
     padding-top: 80px; /* Espacio para el header fijo */
@@ -218,14 +170,80 @@ h1, h2, h3, h4 {
     transform: translateY(-2px);
 }
 
-.course-cards-container {
+.page-header {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    padding: 6rem 2rem 4rem;
+}
+
+.page-header h1 {
+    color: var(--light-color);
+}
+
+.page-header p {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ------------------ Carrusel de Video ------------------ */
+
+.video-carousel {
+    position: relative;
+    height: 80vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--light-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.video-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.video-overlay h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--light-color);
+}
+
+.video-overlay p {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    margin-top: 1rem;
+}
+
+/* ------------------ Cards de Cursos y Organizaciones ------------------ */
+
+.course-cards-container,
+.all-courses-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
 
-.course-card {
+.course-card, .module-card {
     background-color: var(--background-color);
     padding: 1.5rem;
     border-radius: 10px;
@@ -236,7 +254,7 @@ h1, h2, h3, h4 {
     flex-direction: column;
 }
 
-.course-card:hover {
+.course-card:hover, .module-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
@@ -247,6 +265,10 @@ h1, h2, h3, h4 {
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 1rem;
+}
+
+.course-card h3 {
+    margin-top: 0;
 }
 
 .course-card p {
@@ -281,6 +303,116 @@ h1, h2, h3, h4 {
 .organization-logos img:hover {
     filter: grayscale(0%);
     opacity: 1;
+}
+
+/* ------------------ Sección de Detalle de Cursos ------------------ */
+
+.course-detail {
+    padding-top: 5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.course-header {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.course-header h1 {
+    font-size: 2.5rem;
+}
+
+.course-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    background-color: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.info-box {
+    text-align: center;
+}
+
+.info-box h4 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.info-box p {
+    margin: 0;
+}
+
+.course-section {
+    margin-bottom: 3rem;
+}
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.module-card h4 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.content-list {
+    margin-top: 2rem;
+}
+
+.content-list h4 {
+    color: var(--accent-color);
+    border-left: 3px solid var(--accent-color);
+    padding-left: 10px;
+    margin-bottom: 1rem;
+}
+
+.content-list ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.content-list li {
+    background-color: var(--background-color);
+    margin-bottom: 0.5rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+/* ------------------ Contacto y Mapa ------------------ */
+
+.contact-info {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.contact-info h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 0.5rem;
+}
+
+.map-container {
+    width: 100%;
+    height: 400px;
+    margin-top: 2rem;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: none;
 }
 
 /* ------------------ Footer ------------------ */
