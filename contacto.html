@@ -8,25 +8,54 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="header">
-        <img src="img/7.png" alt="Logo de CENACAP" class="logo">
-    </header>
+
+    <nav class="main-nav"> 
+        <div class="nav-content">
+            <img src="img/7.png" alt="Logo de CENACAP" class="logo">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#about-us">Acerca de nosotros</a></li>
+                <li><a href="index.html#organizations">Organizaciones</a></li>
+                <li><a href="index.html#courses">Cursos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <main>
-        <section class="contact-form-section">
-            <h2>Contáctanos</h2>
-            <form action="#" method="post" class="contact-form">
-                <label for="name">Nombre completo</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Correo electrónico</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="message">Mensaje</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-
-                <button type="submit">Enviar Mensaje</button>
-            </form>
+        <section id="contact-info">
+            <h2>Contacto</h2>
+            <div class="contact-details">
+                <p>Para más información, contáctanos a través de los siguientes medios:</p>
+                <div class="contact-item">
+                    <h3>Dirección:</h3>
+                    <p>Calle Lanza Nro. 345, Edificio Lanza, Piso 1, Oficina 102</p>
+                    <p>Cochabamba - Bolivia</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Teléfonos:</h3>
+                    <p>+591 4 4567890</p>
+                    <p>+591 75463703</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Correo electrónico:</h3>
+                    <p><a href="mailto:info@cenacap.org">info@cenacap.org</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>Redes Sociales:</h3>
+                    <div class="social-links">
+                        <a href="https://facebook.com/cenacap" target="_blank" class="social-icon">
+                            
+                        </a>
+                        <a href="https://instagram.com/cenacap" target="_blank" class="social-icon">
+                            
+                        </a>
+                        <a href="https://twitter.com/cenacap" target="_blank" class="social-icon">
+                            
+                        </a>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
