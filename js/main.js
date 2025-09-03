@@ -1,19 +1,23 @@
-// Obtiene el botón de hamburguesa y la lista de enlaces
+// Funcionalidad para el menú de hamburguesa
 const menuToggle = document.getElementById('menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-// Agrega un "escuchador de eventos" para detectar clics en el botón
-menuToggle.addEventListener('click', () => {
-    // Alterna la clase 'active' en la lista de enlaces
-    navLinks.classList.toggle('active');
-});
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        // También puedes añadir una clase para cambiar el icono de la hamburguesa
+        menuToggle.classList.toggle('active'); 
+    });
+}
 
-// Función para la barra de navegación que cambia de color al hacer scroll
+// Funcionalidad para la barra de navegación que cambia de color al hacer scroll
 window.addEventListener('scroll', () => {
     const nav = document.querySelector('.main-nav');
-    if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
+    if (nav) { // Asegurarse de que nav existe
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
     }
 });
