@@ -26,6 +26,8 @@ body {
     line-height: 1.6;
 }
 
+/* ... (tu CSS existente antes del header) ... */
+
 /* ------------------ Header y Navegación ------------------ */
 
 .header {
@@ -48,60 +50,27 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.header .logo img {
-    height: 50px;
-}
-
-.nav {
-    display: flex;
+/* Nuevo contenedor para el logo con fondo blanco y efecto */
+.logo-container {
+    background-color: var(--light-color); /* Fondo blanco */
+    padding: 10px 15px; /* Espacio alrededor del logo */
+    border-radius: 15px; /* Puntas redondeadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para el efecto hover */
+    display: flex; /* Para centrar la imagen dentro */
     align-items: center;
+    justify-content: center;
+    line-height: 0; /* Elimina espacios extra debajo de la imagen */
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
+.logo-container:hover {
+    transform: translateY(-5px); /* Mover hacia arriba al pasar el mouse */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el mouse */
 }
 
-.nav-links li {
-    margin-left: 20px;
-}
-
-.nav-links a {
-    color: var(--light-color);
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-    padding: 10px 0;
-    position: relative;
-}
-
-.nav-links a:hover {
-    color: var(--accent-color);
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: var(--accent-color);
-    bottom: 0;
-    left: 0;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-
-.nav-links a:hover::after {
-    transform: scaleX(1);
-}
-
-.nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--light-color);
-    font-size: 1.5rem;
-    cursor: pointer;
+.header .logo img {
+    height: 50px; /* Tamaño del logo */
+    display: block; /* Asegura que no haya espacio extra */
 }
 
 /* Media Queries para Móviles */
