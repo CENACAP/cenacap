@@ -552,3 +552,135 @@ h1, h2, h3, h4 {
 .copyright {
     text-align: center;
 }
+
+/* ------------------ Carrusel de Imágenes (Acerca de Nosotros) ------------------ */
+
+.image-carousel-section {
+    background-color: var(--background-color);
+    padding: 4rem 2rem;
+}
+
+.image-carousel {
+    position: relative;
+    max-width: 900px; /* Ancho máximo del carrusel */
+    height: 450px; /* Altura del carrusel, puedes ajustarla */
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+}
+
+.carousel-item.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra todo el espacio */
+    display: block; /* Elimina espacios extra */
+}
+
+/* Botones de navegación (flechas) */
+.prev-img-btn, .next-img-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--light-color);
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prev-img-btn:hover, .next-img-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev-img-btn {
+    left: 10px;
+}
+
+.next-img-btn {
+    right: 10px;
+}
+
+/* Puntos de navegación (dots) */
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.carousel-dots .dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-dots .dot.active {
+    background-color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+/* Contenedor de texto para centrarlo */
+.about-content .container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 0 1rem; /* Pequeño padding para móviles */
+}
+
+.about-content h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+/* Media Query para el carrusel de imágenes en móviles */
+@media (max-width: 768px) {
+    .image-carousel {
+        height: 300px; /* Menor altura en móviles */
+    }
+    .prev-img-btn, .next-img-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+}
