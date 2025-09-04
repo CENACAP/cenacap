@@ -336,12 +336,25 @@ h1, h2, h3, h4 {
 
 /* Estilo para el botón "Ver todos los cursos" */
 .all-courses-btn {
-    margin-top: 3rem; /* Aumenta el margen superior para separarlo */
-    display: inline-block; /* Asegura que sea un botón de bloque */
-    margin-left: auto; /* Centra el botón */
-    margin-right: auto; /* Centra el botón */
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 50px; /* Forma de píldora */
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 3rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.all-courses-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
 
 .organizations {
     background-color: var(--background-color);
