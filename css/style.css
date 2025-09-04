@@ -186,7 +186,7 @@ h1 {
 /* Media query para pantallas pequeñas (móviles) */
 @media (max-width: 768px) {
   h1 {
-    font-size: 2.5rem; /* Ajusta este valor al tamaño que prefieras para móviles */
+    font-size: 1.5rem; /* Ajusta este valor al tamaño que prefieras para móviles */
   }
 }
 
