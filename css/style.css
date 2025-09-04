@@ -48,48 +48,11 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* ... (Tu código para .logo-container) ... */
-
-/* Media Queries para Móviles */
-@media (max-width: 768px) {
-    .nav-toggle {
-        display: block; /* Muestra el botón de hamburguesa en móviles */
-    }
-
-    .nav-links {
-        display: none; /* Oculta los enlaces por defecto en móviles */
-        flex-direction: column;
-        width: 100%;
-        text-align: center;
-        background-color: var(--primary-color); /* Fondo azul para el menú desplegado */
-        position: absolute;
-        top: 100%; /* Se despliega debajo del header */
-        left: 0;
-        transition: transform 0.3s ease; /* Transición suave */
-    }
-
-    .nav-links.active {
-        display: flex; /* Muestra los enlaces cuando se aplica la clase 'active' */
-    }
-    
-    .nav-links li {
-        margin: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.2); /* Separador entre elementos */
-    }
-
-    .nav-links a {
-        display: block; /* Asegura que ocupen todo el ancho */
-        padding: 15px; /* Espacio interno */
-        color: var(--light-color); /* Color del texto en el menú móvil */
-    }
-
-    /* En pantallas pequeñas, ocultamos el logo para dar espacio al menú */
-    .header .logo {
-        display: none;
-    }
+.nav {
+    display: flex;
+    align-items: center;
 }
 
-/* Estilos para el menú de navegación en PC (cuando no es móvil) */
 .nav-links {
     display: flex; /* Muestra los enlaces en línea en PC */
     list-style: none;
@@ -98,11 +61,11 @@ body {
 }
 
 .nav-links li {
-    margin-left: 20px; /* Espacio entre elementos en PC */
+    margin-left: 20px;
 }
 
 .nav-links a {
-    color: var(--light-color); /* Color del texto en PC */
+    color: var(--light-color);
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
@@ -111,10 +74,10 @@ body {
 }
 
 .nav-links a:hover {
-    color: var(--accent-color); /* Color al pasar el mouse */
+    color: var(--accent-color);
 }
 
-.nav-links a::after { /* Efecto de subrayado al pasar el mouse */
+.nav-links a::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -128,6 +91,76 @@ body {
 
 .nav-links a:hover::after {
     transform: scaleX(1);
+}
+
+.nav-toggle {
+    display: none; /* Oculta el botón de hamburguesa por defecto en PC */
+    background: none;
+    border: none;
+    color: var(--light-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Nuevo contenedor para el logo con fondo blanco y efecto */
+.logo-container {
+    background-color: var(--light-color);
+    padding: 10px 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+
+.logo-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.header .logo img {
+    height: 50px;
+    display: block;
+}
+
+/* ------------------ Media Queries para Móviles ------------------ */
+
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem;
+    }
+
+    .nav-toggle {
+        display: block; /* Muestra el botón de hamburguesa en móviles */
+    }
+
+    .nav-links {
+        display: none; /* Oculta los enlaces por defecto en móviles */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: var(--primary-color);
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+
+    .nav-links.active {
+        display: flex; /* Muestra los enlaces cuando se les añade la clase 'active' */
+    }
+
+    .nav-links li {
+        margin: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 15px;
+        color: var(--light-color);
+    }
 }
 
 /* ------------------ Secciones de la Página ------------------ */
@@ -179,7 +212,7 @@ h1, h2, h3, h4 {
     margin: 0 auto;
 }
 
-/* ------------------ Carrusel de Video (Ajustado) ------------------ */
+/* ------------------ Carrusel de Video ------------------ */
 
 .video-carousel {
     position: relative;
@@ -219,7 +252,6 @@ h1, h2, h3, h4 {
     object-fit: cover;
 }
 
-/* Botones de navegación del carrusel */
 .prev-slide, .next-slide {
     position: absolute;
     top: 50%;
@@ -252,7 +284,6 @@ h1, h2, h3, h4 {
     right: 10px;
 }
 
-/* Puntos de navegación del carrusel */
 .slide-dots {
     position: absolute;
     bottom: 20px;
@@ -277,12 +308,10 @@ h1, h2, h3, h4 {
     transform: scale(1.2);
 }
 
-/* MEDIA QUERY PARA EL VIDEO EN MÓVILES */
 @media (max-width: 768px) {
     .video-carousel {
         height: 50vh; 
     }
-
     .prev-slide, .next-slide {
         width: 40px;
         height: 40px;
@@ -290,7 +319,6 @@ h1, h2, h3, h4 {
         padding: 10px;
     }
 }
-
 
 /* ------------------ Cards de Cursos y Organizaciones ------------------ */
 
@@ -342,14 +370,13 @@ h1, h2, h3, h4 {
     align-self: flex-start;
 }
 
-/* Estilo para el botón "Ver todos los cursos" */
 .all-courses-btn {
     display: inline-block;
     background-color: var(--primary-color);
     color: var(--light-color);
     text-decoration: none;
     padding: 15px 30px;
-    border-radius: 50px; /* Forma de píldora */
+    border-radius: 50px;
     font-weight: bold;
     font-size: 1.2rem;
     margin-top: 3rem;
@@ -556,8 +583,8 @@ h1, h2, h3, h4 {
 
 .image-carousel {
     position: relative;
-    max-width: 900px; /* Ancho máximo del carrusel */
-    height: 450px; /* Altura del carrusel, puedes ajustarla */
+    max-width: 900px;
+    height: 450px;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 10px;
@@ -589,11 +616,10 @@ h1, h2, h3, h4 {
 .carousel-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que la imagen cubra todo el espacio */
-    display: block; /* Elimina espacios extra */
+    object-fit: cover;
+    display: block;
 }
 
-/* Botones de navegación (flechas) */
 .prev-img-btn, .next-img-btn {
     position: absolute;
     top: 50%;
@@ -626,7 +652,6 @@ h1, h2, h3, h4 {
     right: 10px;
 }
 
-/* Puntos de navegación (dots) */
 .carousel-dots {
     position: absolute;
     bottom: 20px;
@@ -651,12 +676,11 @@ h1, h2, h3, h4 {
     transform: scale(1.2);
 }
 
-/* Contenedor de texto para centrarlo */
 .about-content .container {
     max-width: 900px;
     margin: 0 auto;
     text-align: left;
-    padding: 0 1rem; /* Pequeño padding para móviles */
+    padding: 0 1rem;
 }
 
 .about-content h2 {
@@ -666,10 +690,9 @@ h1, h2, h3, h4 {
     color: var(--primary-color);
 }
 
-/* Media Query para el carrusel de imágenes en móviles */
 @media (max-width: 768px) {
     .image-carousel {
-        height: 300px; /* Menor altura en móviles */
+        height: 300px;
     }
     .prev-img-btn, .next-img-btn {
         width: 40px;
