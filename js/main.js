@@ -1,169 +1,155 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-    // --- Lógica para el menú de navegación móvil ---
+document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
-
-    if (navToggle && navLinks) {
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    }
-
-    // --- Lógica para el carrusel de video (solo si existe en la página) ---
-    const videoSlides = document.querySelectorAll('.video-slide');
-    if (videoSlides.length > 0) {
-        const prevButton = document.querySelector('.prev-slide');
-        const nextButton = document.querySelector('.next-slide');
-        const slideDotsContainer = document.querySelector('.slide-dots');
-        let currentVideoSlide = 0; // Cambiado para evitar conflicto de nombres
-        let videoSlideInterval;
-
-        // Crear los puntos de navegación para el video
-        videoSlides.forEach((slide, index) => {
-            const dot = document.createElement('span');
-            dot.classList.add('dot');
-            if (index === 0) {
-                dot.classList.add('active');
-            }
-            dot.addEventListener('click', () => {
-                goToVideoSlide(index);
-                resetVideoInterval();
-            });
-            slideDotsContainer.appendChild(dot);
-        });
-
-        const videoSlideDots = document.querySelectorAll('.slide-dots .dot'); // Específico para video
-
-        function showVideoSlide(index) {
-            videoSlides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                slide.querySelector('video').pause();
-                slide.querySelector('video').currentTime = 0; // Reiniciar video al cambiar
-            });
-            videoSlideDots.forEach(dot => dot.classList.remove('active'));
-
-            videoSlides[index].classList.add('active');
-            videoSlides[index].querySelector('video').play();
-            videoSlideDots[index].classList.add('active');
-        }
-
-        function goToVideoSlide(index) {
-            currentVideoSlide = (index + videoSlides.length) % videoSlides.length;
-            showVideoSlide(currentVideoSlide);
-        }
-
-        function nextVideoSlide() {
-            goToVideoSlide(currentVideoSlide + 1);
-        }
-
-        function prevVideoSlide() {
-            goToVideoSlide(currentVideoSlide - 1);
-        }
-
-        function resetVideoInterval() {
-            clearInterval(videoSlideInterval);
-            videoSlideInterval = setInterval(nextVideoSlide, 10000); // Cambia de video cada 10 segundos
-        }
-
-        if (nextButton && prevButton) { // Asegurarse de que los botones existan
-            nextButton.addEventListener('click', () => {
-                nextVideoSlide();
-                resetVideoInterval();
-            });
-
-            prevButton.addEventListener('click', () => {
-                prevVideoSlide();
-                resetVideoInterval();
-            });
-        }
-
-        // Inicializar el carrusel de video
-        showVideoSlide(currentVideoSlide);
-        resetVideoInterval();
-    }
-
-
-    // --- Lógica para el carrusel de imágenes (solo si existe en la página) ---
-    const imageCarouselItems = document.querySelectorAll('.image-carousel .carousel-item');
-    if (imageCarouselItems.length > 0) {
-        const prevImageButton = document.querySelector('.prev-img-btn');
-        const nextImageButton = document.querySelector('.next-img-btn');
-        const imageCarouselDotsContainer = document.querySelector('.image-carousel .carousel-dots');
-        let currentImageSlide = 0;
-        let imageSlideInterval;
-
-        // Crear los puntos de navegación para la imagen
-        imageCarouselItems.forEach((item, index) => {
-            const dot = document.createElement('span');
-            dot.classList.add('dot');
-            if (index === 0) {
-                dot.classList.add('active');
-            }
-            dot.addEventListener('click', () => {
-                goToImageSlide(index);
-                resetImageInterval();
-            });
-            imageCarouselDotsContainer.appendChild(dot);
-        });
-
-        const imageSlideDots = document.querySelectorAll('.image-carousel .carousel-dots .dot');
-
-        function showImageSlide(index) {
-            imageCarouselItems.forEach(item => {
-                item.classList.remove('active');
-            });
-            imageSlideDots.forEach(dot => dot.classList.remove('active'));
-
-            imageCarouselItems[index].classList.add('active');
-            imageSlideDots[index].classList.add('active');
-        }
-
-        function goToImageSlide(index) {
-            currentImageSlide = (index + imageCarouselItems.length) % imageCarouselItems.length;
-            showImageSlide(currentImageSlide);
-        }
-
-        function nextImageSlide() {
-            goToImageSlide(currentImageSlide + 1);
-        }
-
-        function prevImageSlide() {
-            goToImageSlide(currentImageSlide - 1);
-        }
-
-        function resetImageInterval() {
-            clearInterval(imageSlideInterval);
-            imageSlideInterval = setInterval(nextImageSlide, 5000); // Cambia de imagen cada 5 segundos
-        }
-
-        if (nextImageButton && prevImageButton) { // Asegurarse de que los botones existan
-            nextImageButton.addEventListener('click', () => {
-                nextImageSlide();
-                resetImageInterval();
-            });
-
-            prevImageButton.addEventListener('click', () => {
-                prevImageSlide();
-                resetImageInterval();
-            });
-        }
-
-        // Inicializar el carrusel de imágenes
-        showImageSlide(currentImageSlide);
-        resetImageInterval();
-    }
-
-    // --- Lógica para el header "scrolled" (si existe) ---
     const header = document.querySelector('.header');
-    if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
+
+    // Toggle para el menú de navegación móvil
+    navToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+    });
+
+    // Opcional: Cerrar menú si se hace clic fuera de él
+    document.addEventListener('click', function(e) {
+        if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+            navLinks.classList.remove('active');
+        }
+    });
+
+    // Opcional: Cambiar el estilo del header al hacer scroll
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) { // Cambia 50 por la altura deseada
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Lógica para el carrusel de videos (si aplica)
+    const videoSlides = document.querySelectorAll('.video-slide');
+    const prevSlideBtn = document.querySelector('.prev-slide');
+    const nextSlideBtn = document.querySelector('.next-slide');
+    const dotsContainer = document.querySelector('.slide-dots');
+    let currentSlideIndex = 0;
+
+    function createDots() {
+        videoSlides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    function updateDots() {
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, index) => {
+            if (index === currentSlideIndex) {
+                dot.classList.add('active');
             } else {
-                header.classList.remove('scrolled');
+                dot.classList.remove('active');
             }
         });
+    }
+
+    function showSlide(index) {
+        videoSlides.forEach((slide, i) => {
+            if (i === index) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+        updateDots();
+    }
+
+    function goToSlide(index) {
+        if (index >= 0 && index < videoSlides.length) {
+            currentSlideIndex = index;
+            showSlide(currentSlideIndex);
+        }
+    }
+
+    if (prevSlideBtn && nextSlideBtn && videoSlides.length > 0) {
+        createDots();
+        showSlide(currentSlideIndex); // Muestra el primer slide al cargar
+
+        nextSlideBtn.addEventListener('click', () => {
+            goToSlide((currentSlideIndex + 1) % videoSlides.length);
+        });
+
+        prevSlideBtn.addEventListener('click', () => {
+            goToSlide((currentSlideIndex - 1 + videoSlides.length) % videoSlides.length);
+        });
+
+        // Auto-play para el carrusel (opcional)
+        // setInterval(() => {
+        //     nextSlideBtn.click(); // Simula clic para avanzar al siguiente slide
+        // }, 5000); // Cambia el valor para ajustar el tiempo entre slides (en milisegundos)
+    }
+    
+    // Si hay un carrusel de imágenes, añadir su lógica aquí
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const prevImgBtn = document.querySelector('.prev-img-btn');
+    const nextImgBtn = document.querySelector('.next-img-btn');
+    const carouselDotsContainer = document.querySelector('.carousel-dots');
+    let currentImageIndex = 0;
+
+    function createImgDots() {
+        carouselItems.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToImageSlide(index));
+            carouselDotsContainer.appendChild(dot);
+        });
+    }
+
+    function updateImgDots() {
+        const dots = document.querySelectorAll('.carousel-dots .dot');
+        dots.forEach((dot, index) => {
+            if (index === currentImageIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    function showImageSlide(index) {
+        carouselItems.forEach((item, i) => {
+            if (i === index) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+        updateImgDots();
+    }
+
+    function goToImageSlide(index) {
+        if (index >= 0 && index < carouselItems.length) {
+            currentImageIndex = index;
+            showImageSlide(currentImageIndex);
+        }
+    }
+
+    if (carouselItems.length > 0 && prevImgBtn && nextImgBtn && carouselDotsContainer) {
+        createImgDots();
+        showImageSlide(currentImageIndex); // Muestra la primera imagen al cargar
+
+        nextImgBtn.addEventListener('click', () => {
+            goToImageSlide((currentImageIndex + 1) % carouselItems.length);
+        });
+
+        prevImgBtn.addEventListener('click', () => {
+            goToImageSlide((currentImageIndex - 1 + carouselItems.length) % carouselItems.length);
+        });
+
+        // Auto-play para el carrusel de imágenes (opcional)
+        // setInterval(() => {
+        //     nextImgBtn.click();
+        // }, 7000); // Cambia el tiempo entre imágenes
     }
 
 });
