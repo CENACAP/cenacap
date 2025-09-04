@@ -44,10 +44,9 @@ body {
 
 .header.scrolled {
     padding: 0.5rem 2rem;
-    background-color:#002147;
+    background-color: #002147;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
-
 .nav {
     display: flex;
     align-items: center;
