@@ -30,12 +30,22 @@
 
     <main>
         <section class="video-carousel">
-            <video src="img/videos/presentacion.mp4" autoplay muted loop class="video-bg"></video>
-            <div class="video-overlay">
-                <h1>Tu futuro profesional comienza con CENACAP</h1>
-                <p>RM: 0286/2025</p>
-            </div>
-        </section>
+                <div class="video-slides">
+                         <div class="video-slide active">
+                                <video src="img/videos/presentacion.mp4" autoplay muted loop class="video-bg"></video>
+                         </div>
+                <div class="video-slide">
+                                  <video src="img/videos/1.mp4" autoplay muted loop class="video-bg"></video>
+                         </div>
+                        </div>
+                <div class="video-slide">
+                                 <video src="img/videos/2.mp4" autoplay muted loop class="video-bg"></video>
+                         </div>
+                        </div>
+    <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+    <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
+    <div class="slide-dots"></div>
+</section>
 
         <section class="about-us">
             <h2>Acerca de nosotros</h2>

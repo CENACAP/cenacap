@@ -185,52 +185,103 @@ h1, h2, h3, h4 {
     margin: 0 auto;
 }
 
-/* ------------------ Carrusel de Video ------------------ */
+/* ------------------ Carrusel de Video (Ajustado) ------------------ */
 
 .video-carousel {
     position: relative;
-    height: 80vh;
+    height: 80vh; /* Altura del carrusel */
     width: 100%;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* Eliminamos justify-content y align-items de aquí, el contenido se posiciona de otra forma */
     color: var(--light-color);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-.video-bg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -1;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
+.video-slides {
+    display: flex; /* Para que los videos se coloquen uno al lado del otro */
+    width: 100%; /* El ancho total del carrusel */
+    height: 100%;
+    transition: transform 0.5s ease-in-out; /* Para la animación de cambio de slide */
 }
 
-.video-overlay {
-    background-color: rgba(0, 0, 0, 0.4);
+.video-slide {
+    flex-shrink: 0; /* Evita que los videos se encojan */
     width: 100%;
     height: 100%;
+    position: relative; /* Para que el video-bg se posicione dentro */
+    display: none; /* Por defecto, ocultamos todos los slides */
+}
+
+.video-slide.active {
+    display: block; /* Solo mostramos el slide activo */
+}
+
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que el video cubra todo el espacio sin distorsionarse */
+    z-index: -1;
+}
+
+/* Botones de navegación del carrusel */
+.prev-slide, .next-slide {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--light-color);
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+    border-radius: 50%; /* Botones redondos */
+    width: 50px;
+    height: 50px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
 }
 
-.video-overlay h1 {
-    font-size: clamp(2rem, 5vw, 4rem);
-    color: var(--light-color);
+.prev-slide:hover, .next-slide:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
-.video-overlay p {
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    margin-top: 1rem;
+.prev-slide {
+    left: 10px;
+}
+
+.next-slide {
+    right: 10px;
+}
+
+/* Puntos de navegación del carrusel */
+.slide-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active {
+    background-color: var(--accent-color);
+    transform: scale(1.2);
 }
 
 /* ------------------ Cards de Cursos y Organizaciones ------------------ */
@@ -241,6 +292,9 @@ h1, h2, h3, h4 {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+    max-width: 1200px; /* Para centrar el contenido de las tarjetas */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .course-card, .module-card {
@@ -280,9 +334,14 @@ h1, h2, h3, h4 {
     align-self: flex-start;
 }
 
+/* Estilo para el botón "Ver todos los cursos" */
 .all-courses-btn {
-    margin-top: 2rem;
+    margin-top: 3rem; /* Aumenta el margen superior para separarlo */
+    display: inline-block; /* Asegura que sea un botón de bloque */
+    margin-left: auto; /* Centra el botón */
+    margin-right: auto; /* Centra el botón */
 }
+
 
 .organizations {
     background-color: var(--background-color);
