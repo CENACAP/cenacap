@@ -44,7 +44,7 @@ body {
 
 .header.scrolled {
     padding: 0.5rem 2rem;
-    background-color: rgba(0, 77, 128, 0.95);
+    background-color: rgba(10, 23, 78, 0.95);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
