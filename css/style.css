@@ -53,10 +53,12 @@ body {
 }
 
 .nav-links {
-    display: flex; /* Muestra los enlaces en línea en PC */
+    display: flex; /* Muestra los enlaces en línea en PC por defecto */
     list-style: none;
     margin: 0;
     padding: 0;
+    justify-content: flex-end;
+    gap: 20px; /* Usa 'gap' para un espaciado más limpio entre enlaces */
 }
 
 .nav-links li {
@@ -126,7 +128,7 @@ body {
 
 /* ------------------ Media Queries para Móviles ------------------ */
 
-@media (max-width: 768px) {
+@media (max-width: 992px) { /* Considera un breakpoint más grande como 992px o 1024px */
     .header {
         padding: 1rem;
     }
@@ -136,13 +138,16 @@ body {
     }
 
     .nav-links {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    justify-content: flex-end; /* Alinea los enlaces a la derecha */
-    flex-wrap: nowrap; /* Evita que los enlaces se pasen a la siguiente línea */
-    gap: 20px; /* Usa 'gap' para un espaciado más limpio entre enlaces */
+        display: none; /* Oculta los enlaces por defecto en móviles */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: var(--primary-color);
+        position: absolute;
+        top: 100%; /* Coloca el menú desplegable justo debajo del header */
+        left: 0;
+        padding-bottom: 1rem; /* Pequeño padding abajo para el menú desplegado */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra para que se vea como un panel */
     }
 
     .nav-links.active {
@@ -151,7 +156,7 @@ body {
 
     .nav-links li {
         margin: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-top: 1px solid rgba(255, 255, 255, 0.2); /* Borde entre elementos del menú móvil */
     }
 
     .nav-links a {
