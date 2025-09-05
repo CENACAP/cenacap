@@ -47,23 +47,20 @@ body {
     background-color: #002147;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
-
 .nav {
     display: flex;
     align-items: center;
 }
 
 .nav-links {
-    display: flex; /* Muestra los enlaces en línea en PC por defecto */
+    display: flex; /* Muestra los enlaces en línea en PC */
     list-style: none;
     margin: 0;
     padding: 0;
-    justify-content: flex-end;
-    gap: 10px; /* **CORREGIDO:** Reducimos el espacio entre enlaces para que quepan */
 }
 
 .nav-links li {
-    margin: 0;
+    margin-left: 20px;
 }
 
 .nav-links a {
@@ -73,7 +70,6 @@ body {
     transition: color 0.3s ease;
     padding: 10px 0;
     position: relative;
-    white-space: nowrap; /* Evita que el texto se divida en dos líneas */
 }
 
 .nav-links a:hover {
@@ -110,7 +106,8 @@ body {
     background-color: var(--light-color);
     padding: 10px 15px;
     border-radius: 15px;
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,7 +126,7 @@ body {
 
 /* ------------------ Media Queries para Móviles ------------------ */
 
-@media (max-width: 1024px) { /* Se activa el menú móvil en resoluciones más pequeñas */
+@media (max-width: 768px) {
     .header {
         padding: 1rem;
     }
@@ -145,10 +142,8 @@ body {
         text-align: center;
         background-color: var(--primary-color);
         position: absolute;
-        top: 100%; /* Coloca el menú desplegable justo debajo del header */
+        top: 100%;
         left: 0;
-        padding-bottom: 1rem; /* Pequeño padding abajo para el menú desplegado */
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra para que se vea como un panel */
     }
 
     .nav-links.active {
@@ -157,7 +152,7 @@ body {
 
     .nav-links li {
         margin: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.2); /* Borde entre elementos del menú móvil */
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .nav-links a {
@@ -185,14 +180,14 @@ h1, h2, h3, h4 {
 
 /* Estilo para pantallas de escritorio (PC) */
 h1 {
-    font-size: 5rem;
+  font-size: 5rem;
 }
 
 /* Media query para pantallas pequeñas (móviles) */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 1.5rem; /* Ajusta este valor al tamaño que prefieras para móviles */
-    }
+  h1 {
+    font-size: 1.5rem; /* Ajusta este valor al tamaño que prefieras para móviles */
+  }
 }
 
 .btn {
@@ -219,154 +214,56 @@ h1 {
     padding: 6rem 2rem 4rem;
 }
 
-/* Estilo específico para la sección del banner de curso */
-.hero-course-banner {
-    width: 100%;
-    height: 350px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+.page-header h1 {
     color: var(--light-color);
-    position: relative;
-    overflow: hidden;
-    padding-top: 80px;
 }
 
-/* Capa de superposición para que el texto sea más legible */
-.hero-course-banner::before {
-    content: '';
+.page-header p {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ------------------ Carrusel de Video ------------------ */
+
+.video-carousel {
+    position: relative;
+    height: 80vh; 
+    width: 100%;
+    overflow: hidden;
+    color: var(--light-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    background-color: black;
+}
+
+.video-slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.video-slide {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
 }
 
-.hero-course-banner .banner-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    padding: 0 1rem;
+.video-slide.active {
+    opacity: 1;
+    visibility: visible;
 }
 
-.hero-course-banner h1 {
-    color: var(--light-color);
-    font-size: 3.5rem;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-.hero-course-banner p {
-    font-size: 1.25rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-}
-
-/* Estilo específico para el curso de SGA */
-.hero-course-banner.sga-banner {
-    background-image: url('../img/sistemas de gestion ambiental.jpeg');
-}
-
-/* Ajustes para móviles en el banner */
-@media (max-width: 768px) {
-    .hero-course-banner {
-        height: 250px;
-        padding-top: 60px;
-    }
-
-    .hero-course-banner h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero-course-banner p {
-        font-size: 1rem;
-    }
-}
-
-/* Estilo para el nuevo texto de descripción del curso */
-.course-description-text {
-    max-width: 800px;
-    margin: 0 auto 2rem auto;
-    text-align: left;
-    color: var(--text-color);
-}
-
-/* Estilo para el contenedor de la cuadrícula */
-.course-info-grid-container {
-    background-color: var(--background-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-}
-
-/* Cambios en la cuadrícula para que se apilen en móviles y se mantengan en dos filas en escritorios */
-.course-info-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-@media (min-width: 768px) {
-    .course-info-grid {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-}
-
-.course-info-item {
-    background-color: var(--light-color);
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(50% - 1rem);
-    display: flex;
-    align-items: flex-start;
-    text-align: left;
-    gap: 1rem;
-}
-
-.course-info-item i {
-    color: var(--primary-color);
-    font-size: 2rem;
-}
-
-.course-info-item h4 {
-    margin-top: 0;
-}
-
-/* ------------------ Sección de Carrusel de Cursos ------------------ */
-
-.course-carousel {
-    position: relative;
-    max-width: 100%;
-    margin: 2rem auto;
-    overflow: hidden;
-}
-
-.carousel-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.course-slide {
-    min-width: 100%;
-    box-sizing: border-box;
-    padding: 0 1rem;
-}
-
-.course-slide img {
+.video-bg {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
+    height: 100%;
+    object-fit: cover;
 }
 
-.carousel-button {
+.prev-slide, .next-slide {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -386,42 +283,16 @@ h1 {
     align-items: center;
 }
 
-.carousel-button:hover {
+.prev-slide:hover, .next-slide:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.prev-slide-btn {
+.prev-slide {
     left: 10px;
 }
 
-.next-slide-btn {
+.next-slide {
     right: 10px;
-}
-
-/* ------------------ Sección de Carrusel de Videos ------------------ */
-
-.video-carousel {
-    position: relative;
-    max-width: 100%;
-    margin: 2rem auto;
-    overflow: hidden;
-}
-
-.video-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.video-slide {
-    min-width: 100%;
-    box-sizing: border-box;
-    padding: 0 1rem;
-}
-
-.video-slide iframe {
-    width: 100%;
-    height: 400px;
-    border-radius: 8px;
 }
 
 .slide-dots {
@@ -434,46 +305,330 @@ h1 {
     z-index: 10;
 }
 
-.slide-dots .dot {
+.dot {
     width: 12px;
     height: 12px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.slide-dots .dot.active {
+.dot.active {
     background-color: var(--accent-color);
+    transform: scale(1.2);
 }
 
-/* Estilos para el nuevo carrusel de imágenes */
+@media (max-width: 768px) {
+    .video-carousel {
+        height: 50vh; 
+    }
+    .prev-slide, .next-slide {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+}
+
+/* ------------------ Cards de Cursos y Organizaciones ------------------ */
+
+.course-cards-container,
+.all-courses-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.course-card, .module-card {
+    background-color: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card:hover, .module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.course-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.course-card h3 {
+    margin-top: 0;
+}
+
+.course-card p {
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+
+.course-card .btn {
+    align-self: flex-start;
+}
+
+.all-courses-btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 3rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.all-courses-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.organizations {
+    background-color: var(--background-color);
+}
+
+.organization-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.organization-logos img {
+    max-width: 150px;
+    height: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.organization-logos img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* ------------------ Sección de Detalle de Cursos ------------------ */
+
+.course-detail {
+    padding-top: 5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.course-header {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.course-header h1 {
+    font-size: 2.5rem;
+}
+
+.course-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    background-color: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.info-box {
+    text-align: center;
+}
+
+.info-box h4 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.info-box p {
+    margin: 0;
+}
+
+.course-section {
+    margin-bottom: 3rem;
+}
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.module-card h4 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.content-list {
+    margin-top: 2rem;
+}
+
+.content-list h4 {
+    color: var(--accent-color);
+    border-left: 3px solid var(--accent-color);
+    padding-left: 10px;
+    margin-bottom: 1rem;
+}
+
+.content-list ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.content-list li {
+    background-color: var(--background-color);
+    margin-bottom: 0.5rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+/* ------------------ Contacto y Mapa ------------------ */
+
+.contact-info {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.contact-info h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 0.5rem;
+}
+
+.map-container {
+    width: 100%;
+    height: 400px;
+    margin-top: 2rem;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: none;
+}
+
+/* ------------------ Footer ------------------ */
+
+.footer {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-section {
+    text-align: left;
+}
+
+.footer-section h4 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.footer-section p {
+    margin: 0.5rem 0;
+}
+
+.social-icons a {
+    color: var(--light-color);
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.copyright {
+    text-align: center;
+}
+
+/* ------------------ Carrusel de Imágenes (Acerca de Nosotros) ------------------ */
+
+.image-carousel-section {
+    background-color: var(--background-color);
+    padding: 4rem 2rem;
+}
+
 .image-carousel {
     position: relative;
-    max-width: 100%;
-    margin: 2rem auto;
+    max-width: 900px;
+    height: 450px;
+    margin: 0 auto;
     overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
-.image-carousel-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.image-carousel-item {
-    min-width: 100%;
-    box-sizing: border-box;
-    display: none;
-}
-
-.image-carousel-item.active {
-    display: block;
-}
-
-.image-carousel-item img {
+.carousel-inner {
+    position: relative;
     width: 100%;
-    height: auto;
-    border-radius: 8px;
+    height: 100%;
+}
+
+.carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+}
+
+.carousel-item.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .prev-img-btn, .next-img-btn {
@@ -524,5 +679,36 @@ h1 {
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-dots .dot.active {
+    background-color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+.about-content .container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 0 1rem;
+}
+
+.about-content h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .image-carousel {
+        height: 300px;
+    }
+    .prev-img-btn, .next-img-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        padding: 10px;
+    }
 }
