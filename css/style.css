@@ -43,73 +43,14 @@ body {
 }
 
 .header.scrolled {
+    background-color: rgba(10, 23, 78, 0.9);
     padding: 0.5rem 2rem;
-    background-color: #002147;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-.nav {
-    display: flex;
-    align-items: center;
 }
 
-.nav-links {
-    display: flex; /* Muestra los enlaces en línea en PC por defecto */
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    justify-content: flex-end;
-    gap: 20px; /* Usa 'gap' para un espaciado más limpio entre enlaces */
-}
-
-.nav-links li {
-    /* Se elimina el 'margin-left' redundante para evitar el exceso de espacio */
-    margin: 0;
-}
-
-.nav-links a {
-    color: var(--light-color);
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-    padding: 10px 0;
-    position: relative;
-}
-
-.nav-links a:hover {
-    color: var(--accent-color);
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: var(--accent-color);
-    bottom: 0;
-    left: 0;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-
-.nav-links a:hover::after {
-    transform: scaleX(1);
-}
-
-.nav-toggle {
-    display: none; /* Oculta el botón de hamburguesa por defecto en PC */
-    background: none;
-    border: none;
-    color: var(--light-color);
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-/* Nuevo contenedor para el logo con fondo blanco y efecto */
 .logo-container {
     background-color: var(--light-color);
     padding: 10px 15px;
     border-radius: 15px;
-    /* Eliminamos la sombra para un aspecto más limpio */
     transition: transform 0.3s ease;
     display: flex;
     align-items: center;
@@ -117,429 +58,213 @@ body {
     line-height: 0;
 }
 
-.logo-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-.header .logo img {
-    height: 50px;
+.logo-container img {
+    height: 60px;
+    width: auto;
     display: block;
 }
 
-/* ------------------ Media Queries para Móviles ------------------ */
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+    gap: 20px;
+}
 
-@media (max-width: 1024px) { /* Se activa el menú móvil en resoluciones más pequeñas */
-    .header {
-        padding: 1rem;
-    }
+.nav-links a {
+    color: var(--light-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
 
-    .nav-toggle {
-        display: block; /* Muestra el botón de hamburguesa en móviles */
-    }
+.nav-links a:hover {
+    color: var(--accent-color);
+}
 
-    .nav-links {
-        display: none; /* Oculta los enlaces por defecto en móviles */
-        flex-direction: column;
-        width: 100%;
-        text-align: center;
-        background-color: var(--primary-color);
-        position: absolute;
-        top: 100%; /* Coloca el menú desplegable justo debajo del header */
-        left: 0;
-        padding-bottom: 1rem; /* Pequeño padding abajo para el menú desplegado */
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra para que se vea como un panel */
-    }
-
-    .nav-links.active {
-        display: flex; /* Muestra los enlaces cuando se les añade la clase 'active' */
-    }
-
-    .nav-links li {
-        margin: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.2); /* Borde entre elementos del menú móvil */
-    }
-
-    .nav-links a {
-        display: block;
-        padding: 15px;
-        color: var(--light-color);
-    }
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--light-color);
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 /* ------------------ Secciones de la Página ------------------ */
 
 main {
-    padding-top: 70px; /* Espacio para el header fijo */
+    padding-top: 80px;
 }
 
-section {
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Sección de Hero (Video) */
+.hero-video {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+}
+
+.hero-content {
+    color: var(--light-color);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+}
+
+.hero-content.about-us h1 {
+    font-size: 3.5rem;
+    margin: 0;
+}
+
+/* Sección Acerca de Nosotros */
+.about-us-section {
+    background-color: var(--background-color);
     padding: 4rem 2rem;
     text-align: center;
 }
 
-h1, h2, h3, h4 {
+.about-us-section h2 {
     color: var(--primary-color);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
-/* Estilo para pantallas de escritorio (PC) */
-h1 {
-  font-size: 5rem;
-}
-
-/* Media query para pantallas pequeñas (móviles) */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 1.5rem; /* Ajusta este valor al tamaño que prefieras para móviles */
-  }
-}
-
-.btn {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: var(--primary-color);
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #FFC107;
-    transform: translateY(-2px);
-}
-
-.page-header {
-    background-color: var(--primary-color);
-    color: var(--light-color);
-    padding: 6rem 2rem 4rem;
-}
-
-.page-header h1 {
-    color: var(--light-color);
-}
-
-.page-header p {
+.about-us-section p {
     max-width: 800px;
     margin: 0 auto;
 }
 
-/* ------------------ Carrusel de Video ------------------ */
-
-.video-carousel {
-    position: relative;
-    height: 80vh;
-    width: 100%;
-    overflow: hidden;
-    color: var(--light-color);
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    background-color: black;
+/* Sección de Cursos */
+.courses-section {
+    padding: 4rem 2rem;
+    text-align: center;
 }
 
-.video-slides {
-    position: relative;
-    width: 100%;
-    height: 100%;
+.courses-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
 }
 
-.video-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
-}
-
-.video-slide.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.video-bg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.prev-slide, .next-slide {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: var(--light-color);
-    border: none;
-    padding: 15px;
-    cursor: pointer;
-    font-size: 1.5rem;
-    z-index: 10;
-    transition: background-color 0.3s ease;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.prev-slide:hover, .next-slide:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.prev-slide {
-    left: 10px;
-}
-
-.next-slide {
-    right: 10px;
-}
-
-.slide-dots {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-    z-index: 10;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.dot.active {
-    background-color: var(--accent-color);
-    transform: scale(1.2);
-}
-
-@media (max-width: 768px) {
-    .video-carousel {
-        height: 50vh;
-    }
-    .prev-slide, .next-slide {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-        padding: 10px;
-    }
-}
-
-/* ------------------ Cards de Cursos y Organizaciones ------------------ */
-
-.course-cards-container,
-.all-courses-gallery {
+.course-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.course-card, .module-card {
-    background-color: var(--background-color);
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.course-card {
+    background-color: var(--light-color);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
     text-align: left;
-    display: flex;
-    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.course-card:hover, .module-card:hover {
+.course-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .course-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 8px;
+}
+
+.course-content {
+    padding: 1.5rem;
+}
+
+.course-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.course-content p {
+    color: var(--text-color);
+    font-size: 0.9rem;
     margin-bottom: 1rem;
 }
 
-.course-card h3 {
-    margin-top: 0;
-}
-
-.course-card p {
-    flex-grow: 1;
-    margin-bottom: 1rem;
-}
-
-.course-card .btn {
-    align-self: flex-start;
-}
-
-.all-courses-btn {
+.course-content a {
     display: inline-block;
-    background-color: var(--primary-color);
-    color: var(--light-color);
-    text-decoration: none;
-    padding: 15px 30px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-top: 3rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.all-courses-btn:hover {
     background-color: var(--accent-color);
     color: var(--primary-color);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
-.organizations {
+.course-content a:hover {
+    background-color: #e6c236;
+}
+
+/* Sección de Organizaciones */
+.organizations-section {
     background-color: var(--background-color);
+    padding: 4rem 2rem;
+    text-align: center;
 }
 
-.organization-logos {
+.organizations-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.organizations-grid {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
     gap: 2rem;
-    margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
-.organization-logos img {
-    max-width: 150px;
-    height: auto;
+.organization-logo {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
     filter: grayscale(100%);
-    opacity: 0.7;
-    transition: filter 0.3s ease, opacity 0.3s ease;
+    transition: filter 0.3s ease;
 }
 
-.organization-logos img:hover {
+.organization-logo:hover {
     filter: grayscale(0%);
-    opacity: 1;
-}
-
-/* ------------------ Sección de Detalle de Cursos ------------------ */
-
-.course-detail {
-    padding-top: 5rem;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: left;
-}
-
-.course-header {
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
-}
-
-.course-header h1 {
-    font-size: 2.5rem;
-}
-
-.course-info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    background-color: var(--background-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-}
-
-.info-box {
-    text-align: center;
-}
-
-.info-box h4 {
-    margin: 0;
-    color: var(--primary-color);
-}
-
-.info-box p {
-    margin: 0;
-}
-
-.course-section {
-    margin-bottom: 3rem;
-}
-
-.modules-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-}
-
-.module-card h4 {
-    margin-bottom: 0.5rem;
-    color: var(--primary-color);
-}
-
-.content-list {
-    margin-top: 2rem;
-}
-
-.content-list h4 {
-    color: var(--accent-color);
-    border-left: 3px solid var(--accent-color);
-    padding-left: 10px;
-    margin-bottom: 1rem;
-}
-
-.content-list ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.content-list li {
-    background-color: var(--background-color);
-    margin-bottom: 0.5rem;
-    padding: 10px 15px;
-    border-radius: 5px;
-}
-
-/* ------------------ Contacto y Mapa ------------------ */
-
-.contact-info {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: left;
-}
-
-.contact-info h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.contact-info p {
-    margin-bottom: 0.5rem;
-}
-
-.map-container {
-    width: 100%;
-    height: 400px;
-    margin-top: 2rem;
-}
-
-.map-container iframe {
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    border: none;
 }
 
 /* ------------------ Footer ------------------ */
@@ -553,16 +278,17 @@ h1 {
 
 .footer-container {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: space-around;
     gap: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 2rem;
-    margin-bottom: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
 }
 
 .footer-section {
-    text-align: left;
+    flex: 1;
+    min-width: 200px;
 }
 
 .footer-section h4 {
@@ -571,154 +297,53 @@ h1 {
 }
 
 .footer-section p {
-    margin: 0.5rem 0;
+    margin-bottom: 0.5rem;
 }
 
 .social-icons a {
     color: var(--light-color);
     font-size: 1.5rem;
-    margin: 0 10px;
-    transition: color 0.3s ease, transform 0.3s ease;
+    margin-right: 15px;
+    transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
     color: var(--accent-color);
-    transform: scale(1.1);
 }
 
 .copyright {
-    text-align: center;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 1rem;
 }
 
-/* ------------------ Carrusel de Imágenes (Acerca de Nosotros) ------------------ */
+/* ------------------ Estilos para Páginas de Cursos ------------------ */
 
-.image-carousel-section {
-    background-color: var(--background-color);
-    padding: 4rem 2rem;
-}
-
-.image-carousel {
-    position: relative;
+.course-detail {
     max-width: 900px;
-    height: 450px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-}
-
-.carousel-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.carousel-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
-}
-
-.carousel-item.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.carousel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.prev-img-btn, .next-img-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: var(--light-color);
-    border: none;
-    padding: 15px;
-    cursor: pointer;
-    font-size: 1.5rem;
-    z-index: 10;
-    transition: background-color 0.3s ease;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.prev-img-btn:hover, .next-img-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.prev-img-btn {
-    left: 10px;
-}
-
-.next-img-btn {
-    right: 10px;
-}
-
-.carousel-dots {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-    z-index: 10;
-}
-
-.carousel-dots .dot {
-    width: 12px;
-    height: 12px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.carousel-dots .dot.active {
-    background-color: var(--accent-color);
-    transform: scale(1.2);
-}
-
-.about-content .container {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: left;
+    margin: 2rem auto;
     padding: 0 1rem;
 }
 
-.about-content h2 {
+.course-header {
     text-align: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 1rem;
     margin-bottom: 2rem;
-    font-size: 2rem;
+}
+
+.course-header h1 {
     color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
 }
 
-@media (max-width: 768px) {
-    .image-carousel {
-        height: 300px;
-    }
-    .prev-img-btn, .next-img-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-        padding: 10px;
-    }
+.course-header p {
+    color: #666;
+    font-weight: bold;
 }
 
-/* --- Estilos para el Banner de Curso con Imagen --- */
+/* Nuevo estilo para el banner de cada curso */
 .hero-course-banner {
     width: 100%;
     height: 350px;
@@ -735,7 +360,7 @@ h1 {
     padding-top: 80px;
 }
 
-/* Capa de superposición para que el texto sea más legible */
+/* Capa de superposición para el texto del banner */
 .hero-course-banner::before {
     content: '';
     position: absolute;
@@ -765,27 +390,6 @@ h1 {
     color: var(--light-color);
     font-size: 1.2rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
-
-/* Estilo específico para el banner del curso de SGA */
-.hero-course-banner.sga-banner {
-    background-image: url('../img/sistemas de gestion ambiental.jpeg');
-}
-
-/* Ajustes para móviles en el banner */
-@media (max-width: 768px) {
-    .hero-course-banner {
-        height: 250px;
-        padding-top: 60px;
-    }
-
-    .hero-course-banner h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero-course-banner p {
-        font-size: 1rem;
-    }
 }
 
 /* Estilo para el nuevo texto de descripción del curso */
@@ -823,10 +427,136 @@ h1 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Media query para dos columnas en pantallas grandes, si lo deseas */
+/* Opcional: Si quieres que se vean en dos columnas en pantallas grandes */
 @media (min-width: 768px) {
     .course-info-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.course-section {
+    margin-bottom: 2rem;
+}
+
+.course-section h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.module-card {
+    background-color: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.module-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.content-list {
+    margin-bottom: 1rem;
+}
+
+.content-list h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.content-list ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.content-list li {
+    padding-left: 1rem;
+    position: relative;
+}
+
+.content-list li::before {
+    content: "•";
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+}
+
+/* ------------------ Media Queries ------------------ */
+
+@media (max-width: 992px) {
+    .nav {
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .nav-toggle {
+        display: block;
+        z-index: 1001;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        background-color: var(--primary-color);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding-top: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        text-align: center;
+        margin: 0.5rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .nav-links li:first-child {
+        border-top: none;
+    }
+    
+    .nav-links a {
+        padding: 15px;
+    }
+
+    .logo-container img {
+        height: 50px;
+    }
+    
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 0.5rem 1rem;
+    }
+
+    .hero-video {
+        height: 70vh;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
     }
 }
