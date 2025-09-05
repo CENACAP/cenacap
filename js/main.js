@@ -24,25 +24,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Lógica para el carrusel de videos (si aplica)
+    // Lógica para el carrusel de videos
     const videoSlides = document.querySelectorAll('.video-slide');
     const prevSlideBtn = document.querySelector('.prev-slide');
     const nextSlideBtn = document.querySelector('.next-slide');
     const dotsContainer = document.querySelector('.slide-dots');
     let currentSlideIndex = 0;
+    let autoSlideInterval; // Variable para el auto-play de videos
 
     function createDots() {
         videoSlides.forEach((_, index) => {
             const dot = document.createElement('div');
             dot.classList.add('dot');
             if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(index));
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+                stopAutoSlide(); // Detiene el auto-play al interactuar
+            });
             dotsContainer.appendChild(dot);
         });
     }
 
     function updateDots() {
-        const dots = document.querySelectorAll('.dot');
+        const dots = document.querySelectorAll('.slide-dots .dot');
         dots.forEach((dot, index) => {
             if (index === currentSlideIndex) {
                 dot.classList.add('active');
@@ -70,37 +74,52 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Nueva función para iniciar el auto-play de videos
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+            goToSlide((currentSlideIndex + 1) % videoSlides.length);
+        }, 8000); // Cambia cada 8 segundos (puedes ajustar este valor)
+    }
+
+    // Nueva función para detener y reiniciar el auto-play de videos
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+        setTimeout(startAutoSlide, 10000); // Reinicia después de 10 segundos
+    }
+
     if (prevSlideBtn && nextSlideBtn && videoSlides.length > 0) {
         createDots();
-        showSlide(currentSlideIndex); // Muestra el primer slide al cargar
+        showSlide(currentSlideIndex);
+        startAutoSlide(); // Inicia el auto-play al cargar la página
 
         nextSlideBtn.addEventListener('click', () => {
             goToSlide((currentSlideIndex + 1) % videoSlides.length);
+            stopAutoSlide(); // Detiene y reinicia
         });
 
         prevSlideBtn.addEventListener('click', () => {
             goToSlide((currentSlideIndex - 1 + videoSlides.length) % videoSlides.length);
+            stopAutoSlide(); // Detiene y reinicia
         });
-
-        // Auto-play para el carrusel (opcional)
-        // setInterval(() => {
-        //     nextSlideBtn.click(); // Simula clic para avanzar al siguiente slide
-        // }, 5000); // Cambia el valor para ajustar el tiempo entre slides (en milisegundos)
     }
-    
-    // Si hay un carrusel de imágenes, añadir su lógica aquí
+
+    // Lógica para el carrusel de imágenes
     const carouselItems = document.querySelectorAll('.carousel-item');
     const prevImgBtn = document.querySelector('.prev-img-btn');
     const nextImgBtn = document.querySelector('.next-img-btn');
     const carouselDotsContainer = document.querySelector('.carousel-dots');
     let currentImageIndex = 0;
+    let autoImageInterval;
 
     function createImgDots() {
         carouselItems.forEach((_, index) => {
             const dot = document.createElement('div');
             dot.classList.add('dot');
             if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToImageSlide(index));
+            dot.addEventListener('click', () => {
+                goToImageSlide(index);
+                stopAutoImageSlide();
+            });
             carouselDotsContainer.appendChild(dot);
         });
     }
@@ -134,22 +153,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function startAutoImageSlide() {
+        autoImageInterval = setInterval(() => {
+            goToImageSlide((currentImageIndex + 1) % carouselItems.length);
+        }, 5000);
+    }
+
+    function stopAutoImageSlide() {
+        clearInterval(autoImageInterval);
+        setTimeout(startAutoImageSlide, 10000);
+    }
+
     if (carouselItems.length > 0 && prevImgBtn && nextImgBtn && carouselDotsContainer) {
         createImgDots();
-        showImageSlide(currentImageIndex); // Muestra la primera imagen al cargar
+        showImageSlide(currentImageIndex);
+        startAutoImageSlide();
 
         nextImgBtn.addEventListener('click', () => {
             goToImageSlide((currentImageIndex + 1) % carouselItems.length);
+            stopAutoImageSlide();
         });
 
         prevImgBtn.addEventListener('click', () => {
             goToImageSlide((currentImageIndex - 1 + carouselItems.length) % carouselItems.length);
+            stopAutoImageSlide();
         });
-
-        // Auto-play para el carrusel de imágenes (opcional)
-        // setInterval(() => {
-        //     nextImgBtn.click();
-        // }, 7000); // Cambia el tiempo entre imágenes
     }
-
 });
